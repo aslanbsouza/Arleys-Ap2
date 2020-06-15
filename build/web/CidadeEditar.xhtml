@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Editar</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h2 class="titulo">Editar as Cidades</h2>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <td> <h:outputLabel value="Cidade"/> </td>
+                        <td> <h:inputText value="#{CidadeController.cidade.cidade}"/> </td>
+                    </tr>
+                    
+                    <tr>
+                        <td> <h:outputLabel value="País"/> </td>
+                        <td>  
+                            <h:selectOneMenu 
+                                             value="#{CidadeController.cidade.pais_id.pais_id}"
+                                             style="width: 250px">
+                                
+                                <f:selectItem itemLabel="Selecione um país..."
+                                              itemValue="-1"/>
+                                
+                                <f:selectItems value="#{PaisController.paises}"
+                                               var="pais"
+                                               itemLabel="#{pais.pais}"
+                                               itemValue="#{pais.pais_id}"/>                  
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                  
+                </tbody>
+            </table>
+            <br/>
+            <h:commandButton value="Voltar" style="width: 48%" action="voltaParaListagem" />
+            <h:commandButton value="Gravar" style="width: 48%" action="#{CidadeController.finalizaEdicao()}" />
+            
+        </h:form>
+    </h:body>
+</html>

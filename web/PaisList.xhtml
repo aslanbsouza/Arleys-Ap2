@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Lista</title>
+         <link rel="stylesheet" type="text/css" href="./Front.css" />
+        <meta charset="UTF-8"> </meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </meta>
+      
+    </head>
+    
+    <body>
+        
+        <h:form>
+             <img src="assets/raposa.svg" class="image"></img>
+            <h2  class="titulo">Lista De Paises Incluidos</h2>
+             
+            <h:commandButton value="Voltar" style="width: 95%" action="voltaParaIndex"/>
+            <h:commandButton value="Adicionar Pais" style="width: 95%" action="#{PaisController.prepararInclusao()}" />
+            <br/>
+            
+            <h:dataTable style="width: 95%"
+                         var="onePais"
+                         value="#{PaisController.paises}"
+                         border="1"
+                         rowClasses="amarelo,azul"
+                         headerClass="cabecalho"
+                         
+                         >
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel class="coluna" value="CÓDIGO"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{onePais.pais_id}"/>                    
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel class="coluna"  value="NOME"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{onePais.pais}"/>                    
+               </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel class="coluna"  value="ultima atualização"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="#{onePais.ultima_atualizacao}">
+                        <f:convertDateTime pattern="dd/MM/yyy" />
+                    </h:outputLabel>
+                </h:column>
+                
+                     <h:column>
+                    
+                        
+                    <h:outputLabel value="|"/>
+                    <h:commandLink value="Editar" action="vaiParaEditar">
+                        <f:setPropertyActionListener target="#{PaisController.pais}" value="#{onePais}" />
+                    </h:commandLink>
+                    
+                    
+                    <h:outputLabel value="|"/>
+                    
+                    <h:commandLink value="Deletar" action="#{PaisController.finalizaDelecao()}">
+                        <f:setPropertyActionListener target="#{PaisController.pais}" value="#{onePais}"/>
+                    </h:commandLink>
+                                      
+                    
+                    
+                </h:column>
+                
+            </h:dataTable>
+            
+        </h:form>
+    </body>
+</html>
